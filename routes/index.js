@@ -51,6 +51,39 @@ router.get('/populate', function(req, res, next){
 
 })
 
+router.get('/suv', function(req, res, next){
+    
+    var nbr; 
+    if (req.query.nbr != undefined){
+        nbr = req.query.nbr; 
+    }
+    else{
+        nbr = 5; 
+    }
+
+    clientConnexion.search({
+        index: 'models', 
+        type : 'model', 
+        body: {
+            size:nbr, 
+            query:{
+                match_all:{}
+            }, 
+            sort:{
+                "volume.keyword":{
+                    order: "desc"
+                }
+            }
+        }
+    }).then(function(res){
+        res.hits.hits.forEach(model => {
+            console.log(model['_source']); 
+        });
+    }, function(err){
+        console.trace(err.message); 
+    }); 
+    res.render('index'); 
+});
 
 
 module.exports = router; 
