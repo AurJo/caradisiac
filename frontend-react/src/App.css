@@ -2,11 +2,22 @@
   margin-top: 200px;
   text-align: center;
 }
+
+.txtstyle{
+  text-align: center; 
+  color: midnightblue; 
+}
+
 .button {
-  background-color:green;
+  background-color:midnightblue;
   border: none;
   color: white;
   font-size: 16px;
   height: 40px;
   width: 200px;
 }
+
+.flotte {
+  float:left;
+  }
+

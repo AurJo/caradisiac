@@ -25,7 +25,7 @@ router.get('/populate', function(req, res, next){
             models.forEach(model => {
 
                 var indexLine = { index :{ _index :  'models', _type :'model' , _id: model.uuid }}; 
-                var modelLine = { brand : model.brand , model : model.model , volume : model.volume , uuid : model.uuid , name : model.name};  
+                var modelLine = { brand : model.brand , image : model.image, model : model.model , volume : model.volume , uuid : model.uuid , name : model.name};  
                 listModelsPerBrand.push(indexLine); 
                 listModelsPerBrand.push(modelLine);        
             });
