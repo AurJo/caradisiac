@@ -51,14 +51,16 @@ router.get('/populate', function(req, res, next){
 
 })
 
-router.get('/suv', function(req, res, next){
+router.get('/cars', function(req, res, next){
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
     
     var nbr; 
     if (req.query.nbr != undefined){
         nbr = req.query.nbr; 
     }
     else{
-        nbr = 5; 
+        nbr = 10; 
     }
 
     clientConnexion.search({
@@ -75,14 +77,17 @@ router.get('/suv', function(req, res, next){
                 }
             }
         }
-    }).then(function(res){
-        res.hits.hits.forEach(model => {
+    }).then(function(res2){
+        var jsonModel = []
+        res2.hits.hits.forEach(model => {
             console.log(model['_source']); 
+            jsonModel.push(model['_source']);
         });
+        res.json(jsonModel);
     }, function(err){
         console.trace(err.message); 
     }); 
-    res.render('index'); 
+    //res.render('index'); 
 });
 
 
